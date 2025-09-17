@@ -3,9 +3,9 @@ import Point from '@mapbox/point-geometry';
 import {clamp, type Complete, type RequireAtLeastOne} from '../util/util';
 
 /**
- * An `EdgeInset` object represents screen space padding applied to the edges of the viewport.
- * This shifts the apparent center or the vanishing point of the map. This is useful for adding floating UI elements
- * on top of the map and having the vanishing point shift as UI elements resize.
+ * `EdgeInset` オブジェクトは、ビューポートの端に適用される画面上のパディングを表します。
+ * これにより、マップの見かけ上の中心点や消失点がシフトします。これは、マップ上にフローティングUI要素を追加し、
+ * UI要素のサイズ変更に応じて消失点を移動させたい場合に便利です。
  *
  * @group Geography and Geometry
  */
@@ -43,12 +43,12 @@ export class EdgeInsets {
     }
 
     /**
-     * Interpolates the inset in-place.
-     * This maintains the current inset value for any inset not present in `target`.
-     * @param start - interpolation start
-     * @param target - interpolation target
-     * @param t - interpolation step/weight
-     * @returns the insets
+     * インセットをインプレースで補間します。
+     * `target` に存在しないインセット値は現在の値を維持します。
+     * @param start - 補間の開始値
+     * @param target - 補間の目標値
+     * @param t - 補間のステップ／重み
+     * @returns インセット
      */
     interpolate(start: PaddingOptions | EdgeInsets, target: PaddingOptions, t: number): EdgeInsets {
         if (target.top != null && start.top != null) this.top = interpolates.number(start.top, target.top, t);
@@ -60,12 +60,12 @@ export class EdgeInsets {
     }
 
     /**
-     * Utility method that computes the new apprent center or vanishing point after applying insets.
-     * This is in pixels and with the top left being (0.0) and +y being downwards.
+     * インセットを適用した後の新しい見かけ上の中心点（消失点）を計算するユーティリティメソッドです。
+     * 単位はピクセルで、左上が (0.0)、+y が下方向になります。
      *
-     * @param width - the width
-     * @param height - the height
-     * @returns the point
+     * @param width - 幅
+     * @param height - 高さ
+     * @returns 中心点
      */
     getCenter(width: number, height: number): Point {
         // Clamp insets so they never overflow width/height and always calculate a valid center
@@ -87,10 +87,9 @@ export class EdgeInsets {
     }
 
     /**
-     * Returns the current state as json, useful when you want to have a
-     * read-only representation of the inset.
+     * 現在の状態を JSON として返します。インセットの読み取り専用表現が必要な場合に便利です。
      *
-     * @returns state as json
+     * @returns 状態を JSON で返します
      */
     toJSON(): Complete<PaddingOptions> {
         return {
@@ -103,8 +102,7 @@ export class EdgeInsets {
 }
 
 /**
- * Options for setting padding on calls to methods such as {@link Map.fitBounds}, {@link Map.fitScreenCoordinates}, and {@link Map.setPadding}. Adjust these options to set the amount of padding in pixels added to the edges of the canvas. Set a uniform padding on all edges or individual values for each edge. All properties of this object must be
- * non-negative integers.
+ * {@link Map.fitBounds}、{@link Map.fitScreenCoordinates}、{@link Map.setPadding} などのメソッド呼び出し時にパディングを設定するためのオプションです。これらのオプションを調整することで、キャンバスの端に追加されるパディング量（ピクセル単位）を設定できます。すべての端に均一なパディングを設定するか、各端ごとに個別の値を指定できます。このオブジェクトのすべてのプロパティは、負でない整数でなければなりません。
  *
  * @group Geography and Geometry
  *
@@ -123,24 +121,24 @@ export class EdgeInsets {
  *   padding: 20
  * });
  * ```
- * @see [Fit to the bounds of a LineString](https://maplibre.org/maplibre-gl-js/docs/examples/zoomto-linestring/)
- * @see [Fit a map to a bounding box](https://maplibre.org/maplibre-gl-js/docs/examples/fitbounds/)
+ * @see [ラインストリングの境界に合わせてズームする](https://maplibre.org/maplibre-gl-js/docs/examples/zoomto-linestring/)
+ * @see [マップをバウンディングボックスに合わせる](https://maplibre.org/maplibre-gl-js/docs/examples/fitbounds/)
  */
 export type PaddingOptions = RequireAtLeastOne<{
     /**
-     * Padding in pixels from the top of the map canvas.
+     * マップキャンバスの上端からのパディング（ピクセル単位）。
      */
     top: number;
     /**
-     * Padding in pixels from the bottom of the map canvas.
+     * マップキャンバスの下端からのパディング（ピクセル単位）。
      */
     bottom: number;
     /**
-     * Padding in pixels from the left of the map canvas.
+     * マップキャンバスの左端からのパディング（ピクセル単位）。
      */
     right: number;
     /**
-     * Padding in pixels from the right of the map canvas.
+     * マップキャンバスの右端からのパディング（ピクセル単位）。
      */
     left: number;
 }>;
