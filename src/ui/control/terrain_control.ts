@@ -5,7 +5,7 @@ import type {IControl} from './control';
 import type {TerrainSpecification} from '@maplibre/maplibre-gl-style-spec';
 
 /**
- * A `TerrainControl` control contains a button for turning the terrain on and off.
+ * `TerrainControl` コントロールは、地形をオンとオフに切り替えるボタンを含んでいます。
  *
  * @group Markers and Controls
  *
